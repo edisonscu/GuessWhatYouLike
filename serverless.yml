@@ -1,0 +1,16 @@
+service: chatbot
+
+provider:
+  name: aws
+  runtime: python3.7
+
+functions:
+  numpy:
+    handler: lambda_function.lambda_handler
+
+plugins:
+  - serverless-python-requirements
+
+custom:
+  pythonRequirements:
+    dockerizePip: true
