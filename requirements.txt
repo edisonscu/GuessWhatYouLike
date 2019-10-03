@@ -1,0 +1,12 @@
+line-bot-sdk
+flask
+python-dateutil
+requests
+url-normalize 
+beautifulsoup4
+bs4
+Beautifulsoup4
+apiai
+pymongo
+dnspython
+boto3
