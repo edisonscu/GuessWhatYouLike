@@ -637,8 +637,7 @@ def lambda_handler(lambda_event, context):
                 collection.update_one(condition, {'$set': user})
             else:  # user沒有資料，新增
                 print("EMPTY")
-                userdict = {"userId": userId, "lat": {}, "lng": {
-                }, "lan": lan, "preference": {"like": [], "ok": [], "dislike": []}}
+                userdict = {"userId": userId, "lat": None, "lng": None, "lan": lan, "preference": {"like": [], "ok": [], "dislike": []}}
                 collection.insert_one(userdict)
 
             bubble1 = BubbleContainer(
@@ -857,9 +856,9 @@ def lambda_handler(lambda_event, context):
             collection.update_one(condition, {'$set': user})
         else:  # user沒有資料，新增
             print("EMPTY")
-            userdict = {"userId": userId, "lat": lat, "lng": lng,"lan" : "zh-TW",
+            user = {"userId": userId, "lat": lat, "lng": lng,"lan" : "zh-TW",
                         "preference": {"like": [], "ok": [], "dislike": []}}
-            collection.insert_one(userdict)
+            collection.insert_one(user)
 
         # 去天氣API拿天氣資料 並回傳JSON 處理JSON拿天氣資料
         complete_url = 'https://api.openweathermap.org/data/2.5/weather?lat={}&lon={}&appid=0056a083378c9466f69a017d5c17c4f4&lang=zh_tw'.format(lat, lng)
