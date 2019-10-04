@@ -75,11 +75,22 @@ def lambda_handler(lambda_event, context):
             print(event.message.text)
             # user沒資料
             if user == None or user['lat'] == None:
+                language = "zh-TW"
+                if user:
+                    language = user['lan']
+
+                relocation = {
+                    'zh-TW' : 'https://i.imgur.com/Mu3OmsY.jpg',
+                    'en' : 'https://imgur.com/QPeSsju.jpg',
+                    'ja' : 'https://imgur.com/MjuLXTe.jpg',
+                    'ko' : 'https://imgur.com/2uu74Xs.jpg'
+                }.get(user['lan'], None)
+
                 # 給予定位
                 bubble1 = BubbleContainer(
                     direction='ltr',
                     hero=ImageComponent(
-                        url='https://i.imgur.com/Mu3OmsY.jpg',
+                        url=relocation,
                         size='full',
                         aspect_ratio='5:1',
                         aspect_mode='fit',
@@ -88,7 +99,7 @@ def lambda_handler(lambda_event, context):
                 )
                 message1 = FlexSendMessage(alt_text="hello", contents=bubble1)
                 line_bot_api.reply_message(
-                    event.reply_token, [TextSendMessage(text="資料庫沒有你的位置資料，請重新定位位置喔!"), message1])
+                    event.reply_token, [TextSendMessage(text=trans_txt("資料庫沒有你的位置資料，請重新定位位置喔!",language).get('TranslatedText')), message1])
 
             else:  # user有資料
                 # 拿user經緯度
@@ -199,20 +210,31 @@ def lambda_handler(lambda_event, context):
                     return thumbnailImageUrl,address,newname[0]
             # user沒資料
             if(user == None or user['lat'] == None):
+                language = "zh-TW"
+                if user:
+                    language = user['lan']
+
+                relocation = {
+                    'zh-TW' : 'https://i.imgur.com/Mu3OmsY.jpg',
+                    'en' : 'https://imgur.com/QPeSsju.jpg',
+                    'ja' : 'https://imgur.com/MjuLXTe.jpg',
+                    'ko' : 'https://imgur.com/2uu74Xs.jpg'
+                }.get(user['lan'], None)
+
                 # 給予定位
                 bubble1 = BubbleContainer(
                     direction='ltr',
                     hero=ImageComponent(
-                        url='https://i.imgur.com/Mu3OmsY.jpg',
+                        url=relocation,
                         size='full',
                         aspect_ratio='5:1',
                         aspect_mode='fit',
                         action=URIAction(uri='line://nv/location', label='label')
                     ),
                 )
-                message1 = FlexSendMessage(alt_text="資料庫沒有你的位置資料，請重新定位位置喔!", contents=bubble1)
+                message1 = FlexSendMessage(alt_text=trans_txt("資料庫沒有你的位置資料，請重新定位位置喔!",language).get('TranslatedText'), contents=bubble1)
                 line_bot_api.reply_message(
-                    event.reply_token, [TextSendMessage(text="資料庫沒有你的位置資料，請重新定位位置喔!"), message1])
+                    event.reply_token, [TextSendMessage(text=trans_txt("資料庫沒有你的位置資料，請重新定位位置喔!",language).get('TranslatedText')), message1])
 
             else:  # user有資料
                 # 拿user經緯度
@@ -245,7 +267,17 @@ def lambda_handler(lambda_event, context):
         elif text == '活動' or event.message.text == '활동에 참여할 수 있습니다' :
             print(event.message.text)
             # user沒資料
-            if(user == None or user['lat'] == None):
+            if user == None or user['lat'] == None:
+                language = "zh-TW"
+                if user:
+                    language = user['lan']
+
+                relocation = {
+                    'zh-TW' : 'https://i.imgur.com/Mu3OmsY.jpg',
+                    'en' : 'https://imgur.com/QPeSsju.jpg',
+                    'ja' : 'https://imgur.com/MjuLXTe.jpg',
+                    'ko' : 'https://imgur.com/2uu74Xs.jpg'
+                }.get(user['lan'], None)
                 # 給予定位
                 bubble1 = BubbleContainer(
                     direction='ltr',
@@ -257,9 +289,9 @@ def lambda_handler(lambda_event, context):
                         action=URIAction(uri='line://nv/location', label='label')
                     ),
                 )
-                message1 = FlexSendMessage(alt_text="資料庫沒有你的位置資料，請重新定位位置喔!", contents=bubble1)
+                message1 = FlexSendMessage(alt_text=trans_txt("資料庫沒有你的位置資料，請重新定位位置喔!",language).get('TranslatedText'), contents=bubble1)
                 line_bot_api.reply_message(
-                    event.reply_token, [TextSendMessage(text="資料庫沒有你的位置資料，請重新定位位置喔!"), message1])
+                    event.reply_token, [TextSendMessage(text=trans_txt("資料庫沒有你的位置資料，請重新定位位置喔!",language).get('TranslatedText')), message1])
 
             else:  # user有資料
                 # 拿user經緯度
@@ -291,7 +323,17 @@ def lambda_handler(lambda_event, context):
         elif text == '景點' or event.message.text == '観光名所':
             print(event.message.text)
             # user沒資料
-            if(user == None or user['lat'] == None):
+            if user == None or user['lat'] == None:
+                language = "zh-TW"
+                if user:
+                    language = user['lan']
+
+                relocation = {
+                    'zh-TW' : 'https://i.imgur.com/Mu3OmsY.jpg',
+                    'en' : 'https://imgur.com/QPeSsju.jpg',
+                    'ja' : 'https://imgur.com/MjuLXTe.jpg',
+                    'ko' : 'https://imgur.com/2uu74Xs.jpg'
+                }.get(user['lan'], None)
                 bubble1 = BubbleContainer(
                     direction='ltr',
                     hero=ImageComponent(
@@ -302,9 +344,9 @@ def lambda_handler(lambda_event, context):
                         action=URIAction(uri='line://nv/location', label='label')
                     ),
                 )
-                message1 = FlexSendMessage(alt_text="資料庫沒有你的位置資料，請重新定位位置喔", contents=bubble1)
+                message1 = FlexSendMessage(alt_text=trans_txt("資料庫沒有你的位置資料，請重新定位位置喔!",language).get('TranslatedText'), contents=bubble1)
                 line_bot_api.reply_message(
-                    event.reply_token, [TextSendMessage(text="資料庫沒有你的位置資料，請重新定位位置喔!"), message1])
+                    event.reply_token, [TextSendMessage(text=trans_txt("資料庫沒有你的位置資料，請重新定位位置喔!",language).get('TranslatedText')), message1])
             else:
                 lat = user['lat']
                 lng = user['lng']
@@ -389,7 +431,7 @@ def lambda_handler(lambda_event, context):
 
         elif text == "選單" or text == "功能表" or text == "從選單中選取" or text == "選擇菜單":
             # user沒資料
-            if(user == None or user['lat'] == None):
+            if user == None:
                 bubble = BubbleContainer(
                     direction='ltr',
                     body=BoxComponent(
@@ -990,8 +1032,7 @@ def lambda_handler(lambda_event, context):
         line_bot_api.reply_message(
             event.reply_token,
             [TextMessage(text=trans_txt("接收到位置囉~",user['lan']).get('TranslatedText')),
-            FlexSendMessage(alt_text="推薦選單", contents=bubbl_1),
-            FlexSendMessage(alt_text="天氣", contents=bubble_2)]
+            FlexSendMessage(alt_text="推薦選單", contents=bubbl_1)]
         )
 
     def translate_text(text,SRC_LANG,TRG_LANG):
